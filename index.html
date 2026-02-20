@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduPath  - Complete Career Guidance Platform</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="loader" class="loader-screen">
+    <div class="spinner"></div>
+    <p>Building your smart career dashboard...</p>
+  </div>
+
+  <header class="topbar glass fade-in">
+    <div>
+      <h1>EduPath</h1>
+      <p id="heroSubtitle" class="typewriter"></p>
+    </div>
+    <div class="actions">
+      <button id="themeToggleBtn" class="ghost">🌙 Theme</button>
+      <button id="adminOpenBtn" class="admin-btn">Admin Login</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="homeLinks" class="panel fade-in-up reveal">
+      <h2>Explore Directly</h2>
+      <div class="quick-grid">
+        <button class="quick-card" data-target="after10Section">After 10th</button>
+        <button class="quick-card" data-target="after12Section">After 12th</button>
+        <button class="quick-card" data-target="afterGradSection">After Graduation</button>
+        <button class="quick-card" data-target="examSection">Career Roadmaps</button>
+        <button class="quick-card" data-target="examSection">Exams</button>
+        <button class="quick-card" data-target="collegeSection">Colleges</button>
+        <button class="quick-card" data-target="scholarshipSection">Scholarships</button>
+      </div>
+    </section>
+
+    <section class="stats-grid reveal">
+      <article class="stat-card panel"><h3 id="statUsers">0</h3><p>Students Guided</p></article>
+      <article class="stat-card panel"><h3 id="statRoadmaps">0</h3><p>Roadmaps Covered</p></article>
+      <article class="stat-card panel"><h3 id="statExams">0</h3><p>Exam Strategies</p></article>
+      <article class="stat-card panel"><h3 id="statPaths">0</h3><p>Career Paths</p></article>
+    </section>
+
+    <section id="authSection" class="panel fade-in-up reveal">
+      <h2>Start Your Journey</h2>
+      <p class="muted">Register/Login and answer 3 basic onboarding questions.</p>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="register">Register</button>
+        <button class="tab-btn" data-tab="login">Login</button>
+      </div>
+
+      <form id="registerForm" class="tab-content active">
+        <div class="grid two">
+          <label>Name<input id="regName" required /></label>
+          <label>Email<input id="regEmail" type="email" required /></label>
+        </div>
+        <div class="grid two">
+          <label>Password<input id="regPassword" type="password" required /></label>
+          <label>Where are you from? (State/City)<input id="regLocation" required /></label>
+        </div>
+        <div class="grid two">
+          <label>Which class/qualification are you in?
+            <select id="regClass" required>
+              <option value="">Select</option>
+              <option>10th</option>
+              <option>12th</option>
+              <option>Graduation</option>
+              <option>Master's</option>
+            </select>
+          </label>
+          <label>Why are you visiting this website?
+            <select id="regReason" required>
+              <option value="">Select</option>
+              <option>Career guidance</option>
+              <option>Exam preparation</option>
+              <option>College selection</option>
+              <option>Scholarship support</option>
+            </select>
+          </label>
+        </div>
+        <label>Main interest
+          <select id="regInterest" required>
+            <option value="">Select</option>
+            <option>Engineering</option>
+            <option>Medical</option>
+            <option>Commerce/Management</option>
+            <option>Government Exams</option>
+            <option>Arts/Humanities</option>
+            <option>Tech/Data/AI</option>
+          </select>
+        </label>
+        <button type="submit">Create Profile</button>
+      </form>
+
+      <form id="loginForm" class="tab-content">
+        <div class="grid two">
+          <label>Email<input id="loginEmail" type="email" required /></label>
+          <label>Password<input id="loginPassword" type="password" required /></label>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <p id="authMessage" class="message"></p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <section class="panel hero-panel fade-in-up reveal">
+        <div>
+          <h2 id="welcomeTitle"></h2>
+          <p id="welcomeMeta"></p>
+          <p id="aiRecommendation" class="badge"></p>
+        </div>
+        <div class="actions">
+          <button id="savePdfBtn">Download Plan (PDF)</button>
+          <button id="logoutBtn" class="ghost">Logout</button>
+        </div>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Personalized Career Planner</h3>
+        <div class="grid three">
+          <label>Qualification
+            <select id="plannerQualification">
+              <option>10th</option><option>12th</option><option>Graduation</option><option>Master's</option>
+            </select>
+          </label>
+          <label>Career Interest
+            <select id="plannerInterest"></select>
+          </label>
+          <label>Goal Type
+            <select id="plannerGoal">
+              <option>Exam Preparation</option><option>College Selection</option><option>Job Ready</option><option>Higher Studies</option>
+            </select>
+          </label>
+        </div>
+        <button id="generatePlanBtn">Generate Interactive Plan</button>
+        <div id="plannerOutput" class="grid two"></div>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Qualification-Based Guidance Engine</h3>
+        <div id="qualificationFlow" class="ifthen"></div>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Step-by-Step Guidance</h3>
+        <div class="tabs path-tabs" id="pathTabs">
+          <button class="path-btn active" data-path="After 10th" data-section="after10Section">After 10th</button>
+          <button class="path-btn" data-path="After 12th" data-section="after12Section">After 12th</button>
+          <button class="path-btn" data-path="After Graduation" data-section="afterGradSection">After Graduation</button>
+        </div>
+        <div id="pathContent"></div>
+      </section>
+
+      <section id="examSection" class="panel reveal">
+        <h3>Exam Preparation Roadmaps</h3>
+        <label>Select Exam Goal
+          <select id="roadmapGoal"></select>
+        </label>
+        <ul id="examMeta" class="meta-list"></ul>
+        <ol id="roadmapSteps" class="timeline"></ol>
+      </section>
+
+      <section id="collegeSection" class="panel reveal">
+        <h3>State-wise Colleges</h3>
+        <div class="grid three">
+          <label>State<select id="collegeState"><option value="All">All States</option></select></label>
+          <label>Exam<select id="collegeExam"><option value="Any">Any</option><option>JEE Main</option><option>NEET</option><option>CUET</option><option>State CET</option><option>CAT</option></select></label>
+          <label>Type<select id="collegeType"><option value="Any">Any</option><option>Government</option><option>Private</option></select></label>
+        </div>
+        <button id="findCollegesBtn">Find Colleges</button>
+        <ul id="collegeResults"></ul>
+      </section>
+
+      <section id="scholarshipSection" class="panel reveal">
+        <h3>Scholarships</h3>
+        <div class="grid three">
+          <label>State<input id="schState" /></label>
+          <label>Qualification<select id="schQual"><option value="Any">Any</option><option>10th</option><option>12th</option><option>Graduation</option></select></label>
+          <label>Category<select id="schCategory"><option value="Any">Any</option><option>General</option><option>OBC</option><option>SC</option><option>ST</option><option>EWS</option></select></label>
+        </div>
+        <button id="findScholarshipsBtn">Search</button>
+        <ul id="scholarshipResults"></ul>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Career Quiz / Aptitude Test</h3>
+        <div id="quizContainer"></div>
+        <button id="submitQuizBtn">Analyze</button>
+        <p id="quizResult"></p>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Progress Tracking</h3>
+        <div id="progressChecklist" class="checklist"></div>
+        <div class="progress-wrap"><div id="progressBar" class="progress-bar"></div></div>
+        <p id="nextStep"></p>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Career + Salary Comparison</h3>
+        <div class="grid two">
+          <label>Career 1<select id="compare1"></select></label>
+          <label>Career 2<select id="compare2"></select></label>
+        </div>
+        <button id="compareBtn">Compare</button>
+        <div id="comparisonOutput"></div>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Saved Career Plans</h3>
+        <ul id="savedPlans"></ul>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Parent Section</h3>
+        <ul>
+          <li>Support child interest instead of peer pressure choices.</li>
+          <li>Monthly review: study hours, mock scores, mental wellbeing.</li>
+          <li>Help in college budget planning + scholarship tracking.</li>
+        </ul>
+      </section>
+
+      <section class="panel reveal">
+        <h3>Student Doubt Chatbot</h3>
+        <div id="chatbox" class="chatbox"></div>
+        <div class="chat-controls">
+          <input id="chatInput" placeholder="Ask about JEE/NEET/UPSC/College/Scholarship" />
+          <button id="chatSendBtn">Send</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <button id="backToTopBtn" class="back-to-top hidden">↑</button>
+
+  <div id="adminModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Admin Login</h3>
+      <label>Password<input id="adminPassword" type="password" /></label>
+      <div class="actions">
+        <button id="adminLoginBtn">Login</button>
+        <button id="adminCloseBtn" class="ghost">Close</button>
+      </div>
+      <p id="adminMessage" class="message"></p>
+      <div id="adminPanel" class="hidden">
+        <div class="admin-stats">
+          <div class="admin-stat">
+            <h5 id="adminTotalUsers">0</h5>
+            <p>Total Users</p>
+          </div>
+          <div class="admin-stat">
+            <h5 id="adminActiveUsers">0</h5>
+            <p>Active Sessions</p>
+          </div>
+          <div class="admin-stat">
+            <h5 id="adminContentCount">0</h5>
+            <p>Content Items</p>
+          </div>
+        </div>
+        <h4>👥 Users & Activity</h4>
+        <p id="visitCount"></p>
+        <ul id="adminUsers"></ul>
+        <h4>📊 Recent Activity</h4>
+        <ul id="adminActivity"></ul>
+
+        <h4>📝 Content Manager</h4>
+        <div class="grid two">
+          <label>Type<select id="contentType"><option>careers</option><option>colleges</option><option>scholarships</option><option>roadmaps</option></select></label>
+          <label>Title<input id="contentTitle" placeholder="e.g. New Exam Path"/></label>
+        </div>
+        <label>Description<textarea id="contentDescription" rows="3" placeholder="Add content details"></textarea></label>
+        <button id="contentAddBtn">Add Content Entry</button>
+        <ul id="contentList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
